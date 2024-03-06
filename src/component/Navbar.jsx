@@ -3,7 +3,6 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
 import InputBase from "@mui/material/InputBase";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
@@ -92,21 +91,30 @@ export default function Navbar() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
+          <Link
+            href="./"
+            color="secondary"
+            underline="none"
             sx={{
               flexGrow: 1,
+              fontSize: '20px',
               display: { xs: "none", sm: "block" },
-              fontFamily: "monospace",
               marginRight: 0,
             }}
           >
-            Wecipe Fetcher :3
-          </Typography>
-          <Link href="#" color="secondary" underline="none" sx={{mx:2}}>View all recipes</Link>
-          <Link href="#" color="secondary" underline="none" sx={{mx:2}}>List by category</Link>
+            Recipe fetcher :3
+          </Link>
+          <Link
+            href="./Recipes.jsx"
+            color="secondary"
+            underline="none"
+            sx={{ mx: 2 }}
+          >
+            View all recipes
+          </Link>
+          <Link href="#" color="secondary" underline="none" sx={{ mx: 2 }}>
+            List by category
+          </Link>
           <Search>
             <SearchIconWrapper>
               <SearchIcon />
@@ -115,7 +123,6 @@ export default function Navbar() {
               placeholder="Search…"
               inputProps={{ "aria-label": "search" }}
             />
-            {/* <Button type="submit">Submit</Button> */}
           </Search>
         </Toolbar>
       </AppBar>

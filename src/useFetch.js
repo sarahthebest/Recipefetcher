@@ -21,7 +21,7 @@ export async function fetchRecipe() {
       throw new Error("No wecipes :(");
     }
     await res.json();
-    const recipe = respData.meals[0];
+    const recipe = res.meals[0];
     return console.log(recipe);
 
   } catch (err) {
