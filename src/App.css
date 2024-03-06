@@ -8,7 +8,6 @@
 
 .MuiGrid2-root {
   height: fit-content;
-  background-color: red;
   text-align: center;
 }
 
@@ -16,4 +15,8 @@
   display: flex;
   flex-direction: column;
   height: 100vh;
+}
+
+a {
+  margin: 20px;
 }
