@@ -7,6 +7,7 @@ import InputBase from "@mui/material/InputBase";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import Link from "@mui/material/Link";
+import { NavLink } from "react-router-dom";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -104,17 +105,17 @@ export default function Navbar() {
           >
             Recipe fetcher :3
           </Link>
-          <Link
-            href="./Recipes.jsx"
+          <NavLink
+            to="./Recipes.jsx"
             color="secondary"
             underline="none"
             sx={{ mx: 2 }}
           >
             View all recipes
-          </Link>
-          <Link href="#" color="secondary" underline="none" sx={{ mx: 2 }}>
+          </NavLink>
+          <NavLink href="#" color="secondary" underline="none" sx={{ mx: 2 }}>
             List by category
-          </Link>
+          </NavLink>
           <Search>
             <SearchIconWrapper>
               <SearchIcon />
