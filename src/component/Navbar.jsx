@@ -2,12 +2,11 @@ import { styled, alpha } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
 import InputBase from "@mui/material/InputBase";
-import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import Link from "@mui/material/Link";
 import { NavLink } from "react-router-dom";
+import AppRouter from "./AppRouter";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -33,10 +32,6 @@ const SearchIconWrapper = styled("div")(({ theme }) => ({
   alignItems: "center",
   justifyContent: "center",
 }));
-
-// const MuiAppBar = createTheme ({
-
-// });
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: "inherit",
@@ -80,20 +75,12 @@ export default function Navbar() {
         position="sticky"
         sx={{
           width: "100%",
+          top:0
         }}
       >
         <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            sx={{ mr: 2 }}
-          >
-            <MenuIcon />
-          </IconButton>
           <Link
-            href="./"
+            href="/"
             color="secondary"
             underline="none"
             sx={{
@@ -106,7 +93,7 @@ export default function Navbar() {
             Recipe fetcher :3
           </Link>
           <NavLink
-            to="./Recipes.jsx"
+            to="/Recipes"
             color="secondary"
             underline="none"
             sx={{ mx: 2 }}
@@ -127,6 +114,7 @@ export default function Navbar() {
           </Search>
         </Toolbar>
       </AppBar>
+      <AppRouter />
     </Box>
   );
 }

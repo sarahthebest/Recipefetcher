@@ -5,9 +5,8 @@ import AppRouter from "./component/AppRouter.jsx";
 function App() {
   return (
     <div>
-        <Navbar />
-        <AppRouter />
-    </div>
+      <Navbar />
+      </div>
   );
 }
 

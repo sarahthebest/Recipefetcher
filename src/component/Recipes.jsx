@@ -5,7 +5,7 @@ function Recipes() {
     return (
       <div>
         <Container className="content">
-          <h2>Popular recipes:</h2>
+          <h2>All recipes:</h2>
           <Grid
             container
             rowSpacing={2}
@@ -25,9 +25,6 @@ function Recipes() {
               <h3>Recipe</h3>
             </Grid>
           </Grid>
-          {/* <button onClick={fetchRecipe()}>
-            Random!
-          </button> */}
         </Container>
       </div>
     );
