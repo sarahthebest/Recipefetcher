@@ -1,34 +1,38 @@
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Unstable_Grid2";
+import RecipeCard from "./RecipeCard";
+import Header from "./Header";
+import { Typography } from "@mui/material";
+
 
 function Recipes() {
-    return (
-      <div>
-        <Container className="content">
-          <h2>All recipes:</h2>
-          <Grid
-            container
-            rowSpacing={2}
-            columnSpacing={{ xs: 2, sm: 4, md: 4, lg: 4 }}
-            sx={{bgcolor:'primary.main', borderRadius: '16px'}}
-          >
-            <Grid xs={6}>
-              <h3>Recipe</h3>
-            </Grid>
-            <Grid xs={6}>
-              <h3>Recipe</h3>
-            </Grid>
-            <Grid xs={6}>
-              <h3>Recipe</h3>
-            </Grid>
-            <Grid xs={6}>
-              <h3>Recipe</h3>
-            </Grid>
+  return (
+    <div className="row">
+      <Header />
+      <Container sx={{ display: 'flex', flexDirection: 'column' }}>
+        <Typography sx={{ marginBottom: 2, marginTop: 0, fontSize: 20 }}>All recipes:</Typography>
+        <Grid
+          container
+          rowSpacing={2}
+          columnSpacing={{ xs: 0, sm: 0, md: 0, lg: 0 }}
+          sx={{ borderRadius: "16px", mx: 'auto', }}
+        >
+          <Grid xs={6}>
+            <RecipeCard />
           </Grid>
-        </Container>
-      </div>
-    );
-  }
-  
-  export default Recipes;
-  
+          <Grid xs={6}>
+            <RecipeCard />
+          </Grid>
+          <Grid xs={6}>
+            <RecipeCard />
+          </Grid>
+          <Grid xs={6}>
+            <RecipeCard />
+          </Grid>
+        </Grid>
+      </Container>
+    </div>
+  );
+}
+
+export default Recipes;

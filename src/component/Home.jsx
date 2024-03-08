@@ -13,7 +13,7 @@ const Home = () => {
       <Grid
         container
         rowSpacing={2}
-        columnSpacing={{ xs: 1, sm: 2, md: 2, lg: 2 }}
+        columnSpacing={{ xs: 0, sm: 0, md: 0, lg: 0 }}
         sx={{ borderRadius: "16px", mx:'auto', }}
       >
         <Grid xs={6}>
