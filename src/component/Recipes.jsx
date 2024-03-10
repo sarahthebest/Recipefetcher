@@ -1,11 +1,21 @@
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Unstable_Grid2";
-import RecipeCard from "./RecipeCard";
 import Header from "./Header";
 import { Typography } from "@mui/material";
-
+import { useState, useEffect } from "react";
 
 function Recipes() {
+  const [recipes, setRecipes] = useState(null);
+
+  useEffect(() => {
+    fetch('https://www.themealdb.com/api/json/v1/1/search.php?f=a')
+      .then((response) => response.json())
+      .then((result) => setRecipes(result))
+    return () => {
+      setRecipes(null)
+    }
+  }, [])
+
   return (
     <div className="row">
       <Header />
@@ -17,18 +27,12 @@ function Recipes() {
           columnSpacing={{ xs: 0, sm: 0, md: 0, lg: 0 }}
           sx={{ borderRadius: "16px", mx: 'auto', }}
         >
-          <Grid xs={6}>
-            <RecipeCard />
-          </Grid>
-          <Grid xs={6}>
-            <RecipeCard />
-          </Grid>
-          <Grid xs={6}>
-            <RecipeCard />
-          </Grid>
-          <Grid xs={6}>
-            <RecipeCard />
-          </Grid>
+          {recipes && recipes.meals.map(function(meal) {
+            return (
+              <Grid key={meal.idMeal} xs={6}>
+              </Grid>
+            )
+          })}
         </Grid>
       </Container>
     </div>
