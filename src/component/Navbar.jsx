@@ -70,7 +70,7 @@ export default function Navbar() {
   // });
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box  sx={{ flexGrow: 1 }}>
       <AppBar
         position="sticky"
         sx={{

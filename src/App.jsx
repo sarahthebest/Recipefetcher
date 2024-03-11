@@ -1,11 +1,12 @@
 import "./App.css";
+import Footer from "./component/Footer";
 import Navbar from "./component/Navbar";
-import AppRouter from "./component/AppRouter.jsx";
 
 function App() {
   return (
     <div>
       <Navbar />
+      <Footer />
       </div>
   );
 }

@@ -1,15 +1,11 @@
-import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
 import { Typography } from '@mui/material';
 
 
 const Header = () => {
     return (
         <div>
-            <Box sx={{
-                marginLeft: 0,
-                marginTop:'35px',
+            <Box className="header" sx={{
                 bgcolor: 'primary.main',
                 height: 'fit-content',
                 width: '260px',

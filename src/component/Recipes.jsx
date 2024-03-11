@@ -4,6 +4,8 @@ import Header from "./Header";
 import { Typography } from "@mui/material";
 import { useState, useEffect } from "react";
 
+const uuid = () => 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => (c = Math.random() * 16 | 0, (c == 4 ? (c & 3 | 8) : c)).toString(16));
+
 function Recipes() {
   const [recipes, setRecipes] = useState(null);
 
@@ -27,9 +29,12 @@ function Recipes() {
           columnSpacing={{ xs: 0, sm: 0, md: 0, lg: 0 }}
           sx={{ borderRadius: "16px", mx: 'auto', }}
         >
-          {recipes && recipes.meals.map(function(meal) {
+          {recipes && recipes.meals.map(function(recipe) {
             return (
-              <Grid key={meal.idMeal} xs={6}>
+              <Grid key={uuid()} xs={6}>
+                <Typography>
+                  {recipe.strMeal}
+                  </Typography>
               </Grid>
             )
           })}

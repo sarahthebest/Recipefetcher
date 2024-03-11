@@ -27,7 +27,6 @@ export default function RecipeReviewCard({idMeal, strMeal, strInstructions, strM
     const handleExpandClick = () => {
         setExpanded(!expanded);
     };
-    console.log(idMeal)
     return (
         <Card sx={{ maxWidth: 400 }}>
             <CardHeader
