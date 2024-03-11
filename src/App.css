@@ -35,6 +35,7 @@
 .MuiGrid2-root {
   height: fit-content;
   text-align: center;
+  width: 100%;
 }
 
 .content{

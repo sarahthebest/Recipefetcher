@@ -42,7 +42,11 @@ export default function RecipeReviewCard({idMeal, strMeal, strInstructions, strM
                 height="250"
                 image={strMealThumb}
             />
+
             <CardActions disableSpacing>
+            <Typography variant="body2" color="p">
+          Expand for instructions
+        </Typography>
                 <ExpandMore
                     expand={expanded}
                     onClick={handleExpandClick}

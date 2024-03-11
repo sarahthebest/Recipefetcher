@@ -1,6 +1,7 @@
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Unstable_Grid2";
 import Header from "./Header";
+import RecipeCard from "./RecipeCard";
 import { Typography } from "@mui/material";
 import { useState, useEffect } from "react";
 
@@ -32,9 +33,12 @@ function Recipes() {
           {recipes && recipes.meals.map(function(recipe) {
             return (
               <Grid key={uuid()} xs={6}>
-                <Typography>
-                  {recipe.strMeal}
-                  </Typography>
+                  <RecipeCard
+                    idMeal={recipe.meals[0].idMeal}
+                    strMeal={recipe.meals[0].strMeal}
+                    strInstructions={recipe.meals[0].strInstructions}
+                    strMealThumb={recipe.meals[0].strMealThumb}
+                  />
               </Grid>
             )
           })}

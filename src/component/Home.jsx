@@ -19,17 +19,21 @@ const Home = () => {
       fetch("https://www.themealdb.com/api/json/v1/1/random.php"),
       fetch("https://www.themealdb.com/api/json/v1/1/random.php"),
       fetch("https://www.themealdb.com/api/json/v1/1/random.php"),
+      fetch("https://www.themealdb.com/api/json/v1/1/random.php"),
+      fetch("https://www.themealdb.com/api/json/v1/1/random.php")
     ])
-      .then(([resRecipe1, resRecipe2, resRecipe3, resRecipe4]) =>
+      .then(([resRecipe1, resRecipe2, resRecipe3, resRecipe4, resRecipe5, resRecipe6]) =>
         Promise.all([
           resRecipe1.json(),
           resRecipe2.json(),
           resRecipe3.json(),
           resRecipe4.json(),
+          resRecipe5.json(),
+          resRecipe6.json(),
         ])
       )
-      .then(([dataRecipe1, dataRecipe2, dataRecipe3, dataRecipe4]) => {
-        setRecipes([dataRecipe1, dataRecipe2, dataRecipe3, dataRecipe4]);
+      .then(([dataRecipe1, dataRecipe2, dataRecipe3, dataRecipe4, dataRecipe5, dataRecipe6]) => {
+        setRecipes([dataRecipe1, dataRecipe2, dataRecipe3, dataRecipe4, dataRecipe5, dataRecipe6]);
         console.log(recipes);
       });
     return () => {
@@ -45,14 +49,15 @@ const Home = () => {
           Popular recipes:
         </Typography>
         <Grid
+          wrap="wrap"
+          justifyContent="left"
           container
-          rowSpacing={2}
-          columnSpacing={{ xs: 1, sm: 1, md: 1, lg: 1 }}
-          sx={{ borderRadius: "16px", mx: "auto" }}
+          spacing={{ xs: 1, sm: 1, md: 1, lg: 1 }}
+          sx={{ Width:'100%' }}
         >
           {recipes.map((recipe) => {
             return (
-              <Grid key={uuid()} xs={6}>
+              <Grid key={uuid()} sx={{flexShrink: 1, minWidth:202}} xs={4}>
                 {recipes.length != 0 && (
                   <RecipeCard
                     idMeal={recipe.meals[0].idMeal}

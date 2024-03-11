@@ -84,6 +84,7 @@ export default function Navbar() {
             color="secondary"
             underline="none"
             sx={{
+              width:'fit-content',
               flexGrow: 1,
               fontSize: '20px',
               display: { xs: "none", sm: "block" },
@@ -92,14 +93,6 @@ export default function Navbar() {
           >
             Recipe fetcher :3
           </Link>
-          <NavLink
-            to="/Recipes"
-            color="secondary"
-            underline="none"
-            sx={{ mx: 2 }}
-          >
-            View all recipes
-          </NavLink>
           <NavLink href="#" color="secondary" underline="none" sx={{ mx: 2 }}>
             List by category
           </NavLink>
