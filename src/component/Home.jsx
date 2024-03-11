@@ -3,8 +3,27 @@ import Grid from "@mui/material/Unstable_Grid2";
 import Header from "./Header";
 import RecipeCard from "./RecipeCard";
 import { Typography } from "@mui/material";
+import { useState, useEffect } from "react";
 
 const Home = () => {
+  const recipesAmount = 1;
+  const [recipes, setRecipes] = useState([]);
+
+  useEffect(() => {
+    for (let i = 0; i < recipesAmount; i++) {
+      fetch('https://www.themealdb.com/api/json/v1/1/random.php')
+        .then((response) => response.json())
+        .then((result) => {
+          setRecipes([
+            ...recipes,
+            result
+          ]);
+        })
+    }
+    return () => {
+      setRecipes([])
+    }
+  }, [])
 
   return (
     <div className="row">
@@ -17,18 +36,13 @@ const Home = () => {
           columnSpacing={{ xs: 1, sm: 1, md: 1, lg: 1 }}
           sx={{ borderRadius: "16px", mx: 'auto', }}
         >
-          <Grid xs={6}>
-            <RecipeCard />
-          </Grid>
-          <Grid xs={6}>
-            <RecipeCard />
-          </Grid>
-          <Grid xs={6}>
-            <RecipeCard />
-          </Grid>
-          <Grid xs={6}>
-            <RecipeCard />
-          </Grid>
+          {recipes.map((recipe) => {
+            return (
+              <p key={recipe.idMeal}>
+                {recipe.strMeal}
+              </p>
+            )
+          })}
         </Grid>
       </Container>
     </div>
@@ -36,3 +50,12 @@ const Home = () => {
 };
 
 export default Home;
+
+// {recipes[0] != undefined &&
+//   <RecipeCard
+//     idMeal={recipes[0].meals[0].idMeal}
+//     strMeal={recipes[0].meals[0].strMeal}
+//     strInstructions={recipes[0].meals[0].strInstructions}
+//     strMealThumb={recipes[0].meals[0].strMealThumb}
+//   />
+// }

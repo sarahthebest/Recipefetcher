@@ -9,7 +9,6 @@ import Collapse from '@mui/material/Collapse';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { useState, useEffect } from "react";
 
 const ExpandMore = styled((props) => {
     const { expand, ...other } = props;
@@ -22,30 +21,19 @@ const ExpandMore = styled((props) => {
     }),
 }));
 
-export default function RecipeReviewCard() {
+export default function RecipeReviewCard({idMeal, strMeal, strInstructions, strMealThumb}) {
     const [expanded, setExpanded] = React.useState(false);
 
     const handleExpandClick = () => {
         setExpanded(!expanded);
     };
-
-    const [recipe, setRecipe] = useState(null);
-
-    useEffect(() => {
-        fetch('https://www.themealdb.com/api/json/v1/1/random.php')
-            .then((response) => response.json())
-            .then((result) => setRecipe(result))
-        return () => {
-            setRecipe(null)
-        }
-    }, [])
-
+    console.log(idMeal)
     return (
         <Card sx={{ maxWidth: 400 }}>
             <CardHeader
                 title={
                     <Typography noWrap gutterBottom variant="h6" component="h4">
-                        {recipe && recipe.meals[0].strMeal.toString().substring(0,30)}
+                        {strMeal}
                     </Typography>
                 }
                 sx={{ textAlign: 'left', textOverflow: 'ellipsis' }}
@@ -53,8 +41,7 @@ export default function RecipeReviewCard() {
             <CardMedia
                 component="img"
                 height="250"
-                image={recipe && recipe.meals[0].strMealThumb}
-                alt="Paella dish"
+                image={strMealThumb}
             />
             <CardActions disableSpacing>
                 <ExpandMore
@@ -70,7 +57,7 @@ export default function RecipeReviewCard() {
                 <CardContent>
                     <Typography paragraph>Method:</Typography>
                     <Typography align='left' paragraph>
-                        {recipe && recipe.meals[0].strInstructions}
+                        {strInstructions}
                     </Typography>
                 </CardContent>
             </Collapse>
