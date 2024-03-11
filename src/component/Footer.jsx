@@ -4,6 +4,7 @@ function Footer() {
   return (
     <Box
       sx={{
+        px:20,
         width: "100%",
         height: "100px",
         backgroundColor: "primary.main",

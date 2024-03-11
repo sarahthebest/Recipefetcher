@@ -74,6 +74,7 @@ export default function Navbar() {
       <AppBar
         position="sticky"
         sx={{
+          px:20,
           width: "100%",
           top:0
         }}
