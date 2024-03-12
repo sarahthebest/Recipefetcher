@@ -16,10 +16,11 @@ const Header = () => {
             }}>
                 <Typography sx={{ p: 2, fontStyle: 'italic ' }}>
                     <Typography sx={{ fontStyle: 'normal ' }}>
-                        Recipe fetcher built with themealdb.com
+                        Recipe fetcher built with themealdb.com and materialUI.
                         Current features:
                         <ul style={{ marginTop: 1 }}>
-                            <li>View all recipes</li>
+                            <li>View recipes</li>
+                            <li>View recipe instructions</li>
                             <li>Search recipes</li>
                         </ul>
                     </Typography>

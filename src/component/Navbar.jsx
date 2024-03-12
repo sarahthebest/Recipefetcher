@@ -1,10 +1,6 @@
 import { styled, alpha } from "@mui/material/styles";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import InputBase from "@mui/material/InputBase";
+import {Box, AppBar, Toolbar, InputBase, Link} from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-import Link from "@mui/material/Link";
 import { NavLink } from "react-router-dom";
 import AppRouter from "./AppRouter";
 
