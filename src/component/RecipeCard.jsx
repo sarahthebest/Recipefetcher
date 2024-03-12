@@ -24,8 +24,8 @@ export default function RecipeReviewCard({ idMeal, strMeal, strInstructions, str
         <Card sx={{ maxWidth: 400 }}>
             <CardHeader
                 title={
-                    <Typography noWrap gutterBottom variant="h6" component="h4">
-                        {strMeal}
+                    <Typography noWrap variant="h6" component="h4" sx={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                    {strMeal}
                     </Typography>
                 }
                 sx={{ textAlign: 'left', textOverflow: 'ellipsis' }}

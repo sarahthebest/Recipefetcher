@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom"
-import Recipes from "./Recipes"
+import Recipes from "./Categories"
 import Home from "./Home"
 
 const AppRouter = () => {
@@ -7,7 +7,7 @@ const AppRouter = () => {
     <div className="routes-wrapper">
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/Recipes" element={<Recipes />} />
+        <Route path="/Categories" element={<Recipes />} />
       </Routes>
     </div>
   )
