@@ -3,7 +3,6 @@ import {Box, AppBar, Toolbar, InputBase, Link} from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { NavLink } from "react-router-dom";
 import AppRouter from "./AppRouter";
-import Categories from "./Categories";
 
 
 const Search = styled("div")(({ theme }) => ({
@@ -91,7 +90,7 @@ export default function Navbar() {
           >
             Recipe fetcher :3
           </Link>
-          <NavLink href="./Categories.jsx" color="secondary" underline="none" sx={{ mx: 2 }}>
+          <NavLink to="./Categories" color="secondary" underline="none" sx={{ mx: 2 }}>
             List by category
           </NavLink>
           <Search>
