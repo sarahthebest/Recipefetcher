@@ -4,7 +4,6 @@ function Footer() {
   return (
     <Box
       sx={{
-        px:20,
         width: "100%",
         height: "100px",
         backgroundColor: "primary.main",
@@ -16,7 +15,7 @@ function Footer() {
     >
       <Container maxWidth="false">
         <Grid sx={{marginTop:3}} container direction="row" alignItems="left">
-          <Grid item xs={8}>
+          <Grid item sx={{marginRight:0}} xs={8}>
             <Typography color="secondary.main" variant="h5">
               Recipe Fetcher
             </Typography>
@@ -26,7 +25,7 @@ function Footer() {
           </Grid>
           <Grid item xs={4}>
             <Typography color="secondary.main" variant="h6">
-              {"Site links"}
+              Site links
             </Typography>
             <Stack direction="row" spacing={2}>
               <Link underline="none" color="secondary" href="/">
