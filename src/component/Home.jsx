@@ -14,28 +14,17 @@ const Home = () => {
   const [recipes, setRecipes] = useState([]);
 
   useEffect(() => {
-    Promise.all([
-      fetch("https://www.themealdb.com/api/json/v1/1/random.php"),
-      fetch("https://www.themealdb.com/api/json/v1/1/random.php"),
-      fetch("https://www.themealdb.com/api/json/v1/1/random.php"),
-      fetch("https://www.themealdb.com/api/json/v1/1/random.php"),
-      fetch("https://www.themealdb.com/api/json/v1/1/random.php"),
-      fetch("https://www.themealdb.com/api/json/v1/1/random.php")
-    ])
-      .then(([resRecipe1, resRecipe2, resRecipe3, resRecipe4, resRecipe5, resRecipe6]) =>
-        Promise.all([
-          resRecipe1.json(),
-          resRecipe2.json(),
-          resRecipe3.json(),
-          resRecipe4.json(),
-          resRecipe5.json(),
-          resRecipe6.json(),
-        ])
-      )
-      .then(([dataRecipe1, dataRecipe2, dataRecipe3, dataRecipe4, dataRecipe5, dataRecipe6]) => {
-        setRecipes([dataRecipe1, dataRecipe2, dataRecipe3, dataRecipe4, dataRecipe5, dataRecipe6]);
-        console.log(recipes);
-      });
+    const fetchData = async () => {
+      const requests = Array.from({ length: 6 }, () =>
+        fetch("https://www.themealdb.com/api/json/v1/1/random.php")
+      );
+      const responses = await Promise.all(requests);
+      const data = await Promise.all(responses.map((res) => res.json()));
+      setRecipes(data);
+    };
+
+    fetchData();
+
     return () => {
       setRecipes([]);
     };
@@ -53,11 +42,11 @@ const Home = () => {
           justifyContent="left"
           container
           spacing={{ xs: 1, sm: 1, md: 1, lg: 1 }}
-          sx={{ Width:'100%' }}
+          sx={{ width: "100%" }}
         >
           {recipes.map((recipe) => {
             return (
-              <Grid key={uuid()} sx={{flexShrink: 1, minWidth:202}} xs={4}>
+              <Grid key={uuid()} sx={{ flexShrink: 1, minWidth: 202 }} xs={4}>
                 {recipes.length != 0 && (
                   <RecipeCard
                     idMeal={recipe.meals[0].idMeal}
@@ -76,15 +65,3 @@ const Home = () => {
 };
 
 export default Home;
-
-// for (let i = 0; i < recipesAmount; i++) {
-//   fetch('https://www.themealdb.com/api/json/v1/1/random.php')
-//     .then((response) => response.json())
-//     .then((result) => {
-//       const newArray = [...recipes, result];
-//       setRecipes(
-//         newArray
-//       );
-//       console.log(recipes);
-//     })
-// }

@@ -1,7 +1,4 @@
 import Container from "@mui/material/Container";
-import Grid from "@mui/material/Unstable_Grid2";
-import Header from "./Header";
-import RecipeCard from "./RecipeCard";
 import { Typography } from "@mui/material";
 
 // const uuid = () => 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => (c = Math.random() * 16 | 0, (c == 4 ? (c & 3 | 8) : c)).toString(16));
@@ -30,10 +27,6 @@ function Categories() {
           borderRadius: '16px'
         }}>
         <Typography sx={{ marginBottom: 2, marginTop: 0, fontSize: 20 }}>Italian:</Typography>
-        <RecipeCard />
-        <RecipeCard />
-        <RecipeCard />
-        <RecipeCard />
       </Container>
 
       <Container className="categoryBox"
