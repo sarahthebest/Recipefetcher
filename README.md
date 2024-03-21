@@ -1,6 +1,6 @@
 <h1>Recipe Fetcher</h1>
 
-Built with themealdb API and mui.
+<p>Built in React with themealdb API and mui.</p>
 
 Current functions:
 <ul>
