@@ -1,9 +1,8 @@
 import { styled, alpha } from "@mui/material/styles";
-import {Box, AppBar, Toolbar, InputBase, Link} from "@mui/material";
+import { Box, AppBar, Toolbar, InputBase } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate, Link } from "react-router-dom";
 import AppRouter from "./AppRouter";
-
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -47,49 +46,61 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function Navbar() {
-  // const [searchResult, setSearchResult] = useState(null);
+  
+  const navigate = useNavigate(); 
 
-  // useEffect(() => {
-  //   fetch('www.themealdb.com/api/json/v1/1/search.php?s=Arrabiata')
-  //     .then(res => {
-  //       if(!res.ok){
-  //         throw Error('Website no gib me wecipes :(')
-  //       }
-  //       return res.json();
-  //     })
-  //     .then(data => {
-  //         setSearchResult(data.message)
-  //     })
-  //     .catch(err => {
-  //       console.log('error: ' + err);
-  //     });
-  // });
+  function onSearch(searchString) {
+    fetch(
+      "https://www.themealdb.com/api/json/v1/1/search.php?s=" + searchString
+    )
+      .then((res) => {
+        if (!res.ok) {
+          throw Error("Website no gib me wecipes :(");
+        }
+        return res; 
+      })
+      .then((response) => { 
+        return response.json(); 
+      })
+      .then((data) => {
+        console.log('navbar',data);
+        navigate("/SearchPage", { state: { searchTerm: searchString, searchResult: data.meals } }); 
+      })
+      .catch((err) => {
+        console.log("error: " + err);
+      });
+  }
 
   return (
-    <Box  sx={{ flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 1 }}>
       <AppBar
         position="sticky"
         sx={{
           width: "100%",
-          top:0
+          top: 0,
         }}
       >
         <Toolbar>
           <Link
-            href="/"
+            to="/"
             color="secondary"
             underline="none"
-            sx={{
-              width:'fit-content',
+            style={{
+              width: "fit-content",
               flexGrow: 1,
-              fontSize: '20px',
+              fontSize: "20px",
               display: { xs: "none", sm: "block" },
               marginRight: 0,
             }}
           >
             Recipe fetcher :3
           </Link>
-          <NavLink to="./Categories" color="secondary" underline="none" sx={{ mx: 2 }}>
+          <NavLink
+            to="./Categories"
+            color="secondary"
+            underline="none"
+            sx={{ mx: 2 }}
+          >
             List by category
           </NavLink>
           <Search>
@@ -99,6 +110,11 @@ export default function Navbar() {
             <StyledInputBase
               placeholder="Search…"
               inputProps={{ "aria-label": "search" }}
+              onKeyUp={(e) => {
+                if (e.key === "Enter") {
+                  onSearch(e.target.value);
+                }
+              }}
             />
           </Search>
         </Toolbar>

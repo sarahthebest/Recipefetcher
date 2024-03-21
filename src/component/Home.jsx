@@ -42,7 +42,7 @@ const Home = () => {
           justifyContent="left"
           container
           spacing={{ xs: 1, sm: 1, md: 1, lg: 1 }}
-          sx={{ width: "100%" }}
+          sx={{  }}
         >
           {recipes.map((recipe) => {
             return (
@@ -53,6 +53,8 @@ const Home = () => {
                     strMeal={recipe.meals[0].strMeal}
                     strInstructions={recipe.meals[0].strInstructions}
                     strMealThumb={recipe.meals[0].strMealThumb}
+                    strArea={recipe.meals[0].strArea}
+                    strCategory={recipe.meals[0].strCategory}
                   />
                 )}
               </Grid>

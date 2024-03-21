@@ -17,14 +17,6 @@ body{
   width: 100%;
 }
 
-a {
-  font-weight: 500;
-  text-decoration: inherit;
-}
-a:hover {
-  filter: brightness(100);
-}
-
 body {
   margin: 0;
   display: flex;

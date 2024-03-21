@@ -2,15 +2,16 @@ import { Box, Container, Grid, Stack, Typography, Link } from "@mui/material";
 
 function Footer() {
   return (
-    <Box
+    <Box className='footer'
+      
       sx={{
         width: "100%",
         height: "100px",
         backgroundColor: "primary.main",
         paddingTop: "1rem",
         paddingBottom: "1rem",
-        marginTop: 10,
-        marginBottom: 0,
+        position:'relative',
+        marginTop:12,
       }}
     >
       <Container maxWidth="false">
