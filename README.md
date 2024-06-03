@@ -1,20 +1,19 @@
-<h1>Recipe Fetcher</h1>
+# Recipe Fetcher
 
-<p>Built in React with themealdb API and mui.</p>
+Built in React with the MealDB API and Material-UI.
 
-Current functions:
-<ul>
-  <li>View individual recipes</li>
-    <li>Search recipes</li>
-</ul>
+## Current Functions:
 
-<h2>Install instructions</h2>
-<ol>
-  <li>Clone to folder</li>
-    <li>Run npm install</li>
-      <li>Run npm build</li>
-      <li>Run npm preview</li>
-</ol>
+- View individual recipes
+- Search recipes
 
-<p>When running npm run dev it fetches twice, so run npm preview instead :)</p>
-![thumbnail of website](thumbnail.png)
+## Install Instructions:
+
+1. Clone the repository to your local folder
+2. Run `npm install`
+3. Run `npm build`
+4. Run `npm preview`
+
+When running `npm run dev`, it fetches twice, so run `npm preview` instead :)
+
+![Thumbnail of website](thumbnail.png)
