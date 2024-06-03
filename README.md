@@ -17,3 +17,4 @@ Current functions:
 </ol>
 
 <p>When running npm run dev it fetches twice, so run npm preview instead :)</p>
+![thumbnail of website](thumbnail.png)
