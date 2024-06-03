@@ -1,94 +1,73 @@
 import Container from "@mui/material/Container";
 import { Typography } from "@mui/material";
-
-// const uuid = () => 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => (c = Math.random() * 16 | 0, (c == 4 ? (c & 3 | 8) : c)).toString(16));
+import { useEffect, useState } from "react";
+import Grid from "@mui/material/Unstable_Grid2";
+import RecipeCard from "./RecipeCard";
 
 function Categories() {
+  const [italianRecipes, setItalianRecipes] = useState([]);
+  const [thaiRecipes, setThaiRecipes] = useState([]);
+  const [chineseRecipes, setChineseRecipes] = useState([]);
+  const [indianRecipes, setIndianRecipes] = useState([]);
 
-  // useEffect(() => {
-  //   fetch('https://www.themealdb.com/api/json/v1/1/filter.php?c=Seafood')
-  //     .then((response) => response.json())
-  //     .then((result) => setRecipes(result))
-  //   return () => {
-  //     setRecipes(null)
-  //   }
-  // }, [])
+  const fetchRecipes = async (cuisine, setRecipes) => {
+    try {
+      const response = await fetch(
+        `https://www.themealdb.com/api/json/v1/1/filter.php?a=${cuisine}`
+      );
+      const data = await response.json();
+      setRecipes(data.meals || []);
+    } catch (error) {
+      console.error(`Error fetching ${cuisine} recipes:`, error);
+    }
+  };
+
+  useEffect(() => {
+    fetchRecipes("Italian", setItalianRecipes);
+    fetchRecipes("Thai", setThaiRecipes);
+    fetchRecipes("Chinese", setChineseRecipes);
+    fetchRecipes("Indian", setIndianRecipes);
+  }, []);
+
+  const renderRecipeRow = (cuisine, recipes) => (
+    <div className="category">
+      <Typography sx={{ marginBottom: 2, marginTop: 2, fontSize: 20 }}>
+        {cuisine}:
+      </Typography>
+      <Container
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          gap: 2,
+          marginLeft:0,
+          overflowX: "scroll",
+        }}
+      >
+        {recipes.map((recipe) => (
+          <Grid
+            key={recipe.idMeal}
+            sx={{ flexShrink: 1, minWidth: 202 }}
+            xs={4}
+          >
+            <RecipeCard
+              idMeal={recipe.idMeal}
+              strMeal={recipe.strMeal}
+              strMealThumb={recipe.strMealThumb}
+            />
+          </Grid>
+        ))}
+      </Container>
+    </div>
+  );
 
   return (
     <div className="column">
-      <Container className="categoryBox"
-        sx={{
-          display: 'flex',
-          flexDirection: 'row',
-          gap: 2,
-          marginTop: 6,
-          p: 1,
-          bgcolor: 'primary.main',
-          borderRadius: '16px'
-        }}>
-        <Typography sx={{ marginBottom: 2, marginTop: 0, fontSize: 20 }}>Italian:</Typography>
-      </Container>
-
-      <Container className="categoryBox"
-        sx={{
-          display: 'flex',
-          flexDirection: 'row',
-          gap: 2,
-          marginTop: 2,
-          p: 1,
-          bgcolor: 'primary.main',
-          borderRadius: '16px'
-        }}>
-        <Typography sx={{ marginBottom: 2, marginTop: 0, fontSize: 20 }}>Thai:</Typography>
-      </Container>
-
-      <Container className="categoryBox"
-        sx={{
-          display: 'flex',
-          flexDirection: 'row',
-          gap: 2,
-          marginTop: 2,
-          p: 1,
-          bgcolor: 'primary.main',
-          borderRadius: '16px'
-        }}>
-        <Typography sx={{ marginBottom: 2, marginTop: 0, fontSize: 20 }}>Chinese:</Typography>
-      </Container>
-
-      <Container className="categoryBox"
-        sx={{
-          display: 'flex',
-          flexDirection: 'row',
-          gap: 2,
-          marginTop: 2,
-          p: 1,
-          bgcolor: 'primary.main',
-          borderRadius: '16px'
-        }}>
-        <Typography sx={{ marginBottom: 2, marginTop: 0, fontSize: 20 }}>Indian:</Typography>
-      </Container>
+      {renderRecipeRow("Italian", italianRecipes)}
+      {renderRecipeRow("Thai", thaiRecipes)}
+      {renderRecipeRow("Chinese", chineseRecipes)}
+      {renderRecipeRow("Indian", indianRecipes)}
     </div>
   );
 }
 
 export default Categories;
-
-/* <Grid
-container
-rowSpacing={2}
-columnSpacing={{ xs: 0, sm: 0, md: 0, lg: 0 }}
-sx={{ borderRadius: "16px", mx: 'auto', }}
->
-{recipes && recipes.meals.map(function(recipe) {
-  return (
-    <Grid key={uuid()} xs={6}>
-        <RecipeCard
-          idMeal={recipe.meals[0].idMeal}
-          strMeal={recipe.meals[0].strMeal}
-          strInstructions={recipe.meals[0].strInstructions}
-          strMealThumb={recipe.meals[0].strMealThumb}
-        />
-    </Grid>
-  )
-})}
-</Grid> */
