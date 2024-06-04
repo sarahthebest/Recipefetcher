@@ -20,7 +20,7 @@ const Home = () => {
       );
       const responses = await Promise.all(requests);
       const data = await Promise.all(responses.map((res) => res.json()));
-      setRecipes(data);
+      setRecipes(data.map(response => response.meals[0]));
     };
 
     fetchData();
@@ -42,24 +42,13 @@ const Home = () => {
           justifyContent="left"
           container
           spacing={{ xs: 1, sm: 1, md: 1, lg: 1 }}
-          sx={{  }}
+          sx={{ }}
         >
-          {recipes.map((recipe) => {
-            return (
-              <Grid key={uuid()} sx={{ flexShrink: 1, minWidth: 202 }} xs={4}>
-                {recipes.length != 0 && (
-                  <RecipeCard
-                    idMeal={recipe.meals[0].idMeal}
-                    strMeal={recipe.meals[0].strMeal}
-                    strInstructions={recipe.meals[0].strInstructions}
-                    strMealThumb={recipe.meals[0].strMealThumb}
-                    strArea={recipe.meals[0].strArea}
-                    strCategory={recipe.meals[0].strCategory}
-                  />
-                )}
-              </Grid>
-            );
-          })}
+          {recipes.map((recipe) => (
+            <Grid key={uuid()} sx={{ flexShrink: 1, minWidth: 202 }} xs={4}>
+              <RecipeCard recipe={recipe} />
+            </Grid>
+          ))}
         </Grid>
       </Container>
     </div>

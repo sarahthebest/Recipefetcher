@@ -1,17 +1,18 @@
-import * as React from "react";
-import { styled } from "@mui/material/styles";
+/* eslint-disable react/prop-types */
+import { useState } from "react";
 import {
   Card,
-  CardHeader,
-  CardMedia,
   CardContent,
+  CardMedia,
+  Typography,
+  CardHeader,
   CardActions,
   Collapse,
-  Typography,
   IconButton,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { Link } from "react-router-dom";
+import { styled } from "@mui/material/styles";
+import { useNavigate } from "react-router-dom";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -24,52 +25,46 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export default function RecipeReviewCard({
-  idMeal,
-  strMeal,
-  strInstructions,
-  strMealThumb,
-  strArea,
-  strCategory
-}) {
-  const [expanded, setExpanded] = React.useState(false);
+const RecipeCard = ({ recipe }) => {
+  const navigate = useNavigate();
+  const [expanded, setExpanded] = useState(false);
+
+  const handleCardClick = () => {
+    navigate(`/RecipePage`, { state: { ...recipe } });
+  };
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
+
   return (
     <Card sx={{ maxWidth: 400 }}>
-      <Link
-        to="/RecipePage"
-        state={{
-          mealId: idMeal,
-          mealName: strMeal,
-          mealImg: strMealThumb,
-          mealInstr: strInstructions,
-          mealCountry: strArea,
-          mealCategory: strCategory
-        }}
-      >
-        <CardHeader
-          title={
-            <Typography
-              noWrap
-              variant="h6"
-              component="h4"
-              sx={{
-                overflow: "hidden",
-                textOverflow: "ellipsis",
-                whiteSpace: "nowrap",
-                color: "black",
-              }}
-            >
-              {strMeal}
-            </Typography>
-          }
-          sx={{ textAlign: "left", textOverflow: "ellipsis" }}
-        />
-        <CardMedia component="img" height="250" image={strMealThumb} />
-      </Link>
+      <CardHeader
+        title={
+          <Typography
+            noWrap
+            variant="h6"
+            component="h4"
+            sx={{
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+              whiteSpace: "nowrap",
+              color: "black",
+            }}
+          >
+            {recipe.strMeal}
+          </Typography>
+        }
+        sx={{ textAlign: "left", textOverflow: "ellipsis" }}
+      />
+      <CardMedia
+        component="img"
+        height="250"
+        image={recipe.strMealThumb}
+        alt={recipe.strMeal}
+        onClick={handleCardClick}
+        sx={{ cursor: "pointer" }}
+      />
       <CardActions disableSpacing>
         <Typography variant="body2" color="black">
           Expand for instructions
@@ -87,10 +82,12 @@ export default function RecipeReviewCard({
         <CardContent>
           <Typography paragraph>Method:</Typography>
           <Typography align="left" paragraph>
-            {strInstructions}
+            {recipe.strInstructions}
           </Typography>
         </CardContent>
       </Collapse>
     </Card>
   );
-}
+};
+
+export default RecipeCard;

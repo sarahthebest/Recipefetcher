@@ -31,7 +31,7 @@ function Categories() {
 
   const renderRecipeRow = (cuisine, recipes) => (
     <div className="category">
-      <Typography sx={{ marginBottom: 2, marginTop: 2, fontSize: 20 }}>
+      <Typography sx={{ marginBottom: 4, marginTop: 4, fontSize: 20 }}>
         {cuisine}:
       </Typography>
       <Container
@@ -39,21 +39,15 @@ function Categories() {
           display: "flex",
           flexDirection: "row",
           gap: 2,
-          marginLeft:0,
+          marginLeft: 0,
           overflowX: "scroll",
+          padding:2,
+          bgcolor:'primary.main'
         }}
       >
         {recipes.map((recipe) => (
-          <Grid
-            key={recipe.idMeal}
-            sx={{ flexShrink: 1, minWidth: 202 }}
-            xs={4}
-          >
-            <RecipeCard
-              idMeal={recipe.idMeal}
-              strMeal={recipe.strMeal}
-              strMealThumb={recipe.strMealThumb}
-            />
+          <Grid key={recipe.idMeal} sx={{ flexShrink: 1, minWidth: 202 }} xs={4}>
+            <RecipeCard recipe={recipe} />
           </Grid>
         ))}
       </Container>

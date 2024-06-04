@@ -5,12 +5,23 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 const RecipePage = () => {
   const location = useLocation();
-  const mealId = location.state?.mealId;
-  const mealString = location.state?.mealName;
-  const mealImg = location.state?.mealImg;
-  const mealInstructions = location.state?.mealInstr;
-  const mealArea = location.state?.mealCountry;
-  const mealCategory = location.state?.mealCategory;
+  const meal = location.state;
+
+  const ingredients = [];
+  const measurements = [];
+
+  for (let i = 1; i <= 20; i++) {
+    const ingredient = meal[`strIngredient${i}`];
+    const measurement = meal[`strMeasure${i}`];
+    if (ingredient && ingredient.trim()) {
+      ingredients.push(ingredient);
+      measurements.push(measurement);
+    }
+  }
+
+  const ingredientList = ingredients.map((ingredient, index) => {
+    return `${measurements[index]} ${ingredient}`;
+  });
 
   return (
     <div className="recipe">
@@ -21,7 +32,7 @@ const RecipePage = () => {
             flexDirection: "row",
             alignItems: "center",
             marginBottom: 10,
-            fontSize:20
+            fontSize: 20
           }}
           to="/"
         >
@@ -32,22 +43,22 @@ const RecipePage = () => {
         </Link>
         <Stack direction="row" spacing={1} sx={{ marginBottom: 1 }}>
           <Typography variant="h6" component="h4" sx={{ marginBottom: 1 }}>
-            {mealString}
+            {meal.strMeal}
           </Typography>
           <Chip
-            label={mealCategory}
+            label={meal.strCategory}
             color="secondary"
             variant="filled"
             sx={{ color: "primary.main" }}
           />
           <Chip
-            label={mealArea}
+            label={meal.strArea}
             color="secondary"
             variant="filled"
             sx={{ color: "primary.main" }}
           />
         </Stack>
-        <img src={mealImg} alt="" id="mealImg" />
+        <img src={meal.strMealThumb} alt={meal.strMeal} id="mealImg" />
       </div>
       <div className="right">
         <div className="ingredients">
@@ -55,18 +66,17 @@ const RecipePage = () => {
             Ingredients:
           </Typography>
           <ul>
-            <li>Text</li>
-            <li>Text</li>
-            <li>Text</li>
-            <li>Text</li>
+            {ingredientList.map((item, index) => (
+              <li key={index}>{item}</li>
+            ))}
           </ul>
         </div>
         <div className="instructions">
           <Typography variant="h" component="h3">
             Instructions:
           </Typography>
-          <Typography variant="p" component="body1">
-            {mealInstructions}
+          <Typography variant="body1" component="p">
+            {meal.strInstructions}
           </Typography>
         </div>
       </div>
